@@ -13,9 +13,9 @@ steps:
   image: golang:1.10
   group: build
   environment:
-  - GOOS: linux
-  - GOARCH: amd64
-  - CGO_ENABLED: 0
+    GOOS: linux
+    GOARCH: amd64
+    CGO_ENABLED: 0
   commands:
   - |
     if test "${DRONE_TAG}" = ""; then
