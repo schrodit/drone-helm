@@ -1,0 +1,37 @@
+kind: pipeline
+name: client
+
+steps:
+
+- name: test
+  image: golang:1.10
+  commands:
+  - go vet
+  - go test ./... -cover -coverprofile=coverage.out
+
+- name: build_linux_amd64
+  image: golang:1.10
+  group: build
+  environment:
+  - GOOS=linux
+  - GOARCH=amd64
+  - CGO_ENABLED=0
+  commands:
+  - |
+    if test "${DRONE_TAG}" = ""; then
+      go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -o release/linux/amd64/${DRONE_REPO_NAME}
+    else
+      go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -o release/linux/amd64/${DRONE_REPO_NAME}
+    fi
+
+- name: docker
+  image: wesense.azurecr.io/acr-build:0.0.3
+  settings:
+    repo: wesense.azurecr.io/drone-helm
+    context: .
+    dockerfile: ./Dockerfile
+    registry: wesense
+    username:
+      from_secret: azure_username
+    password:
+      from_secret: azure_password

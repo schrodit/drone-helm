@@ -13,7 +13,7 @@ import (
 )
 
 var HELM_BIN = "/bin/helm"
-var KUBECONFIG = "/root/.kube/kubeconfig"
+var KUBECONFIG = "/home/helm/.kube/kubeconfig"
 
 type (
 	// Config maps the params we need to run Helm

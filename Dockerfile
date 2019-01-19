@@ -3,7 +3,7 @@
 #
 
 FROM alpine:3.6
-MAINTAINER Ivan Pedrazas <ipedrazas@gmail.com>
+MAINTAINER Tim Schrodi <tschrodi96@gmail.com>
 
 # Helm version: can be passed at build time
 ARG VERSION
@@ -29,7 +29,15 @@ RUN set -ex \
 LABEL description="Kubectl and Helm."
 LABEL base="alpine"
 
+ENV KUBE_CONFIG=/home/helm/.kube/config
+
+RUN addgroup -g 666 helm && \
+    adduser -S -u 666 -G helm -h /home/helm helm && \
+    mkdir -p /home/helm/.kube && chown -R helm:helm /home/helm/.kube
+
+USER helm
+
 ADD release/linux/amd64/drone-helm /bin/
-COPY kubeconfig /root/.kube/kubeconfig
+COPY kubeconfig /home/helm/.kube/kubeconfig
 
 ENTRYPOINT [ "/bin/drone-helm" ]

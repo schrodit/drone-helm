@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/ipedrazas/drone-helm/plugin"
 	"github.com/joho/godotenv"
+	"github.com/schrodit/drone-helm/plugin"
 	"github.com/urfave/cli"
 )
 
@@ -31,7 +31,7 @@ func main() {
 			Name:   "kube-config",
 			Usage:  "Kubernetes configuration file path",
 			EnvVar: "PLUGIN_KUBE_CONFIG,KUBE_CONFIG",
-			Value:  "/root/.kube/config",
+			Value:  "/home/helm/.kube/config",
 		},
 		cli.StringFlag{
 			Name:   "namespace",
