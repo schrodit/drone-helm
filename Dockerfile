@@ -30,12 +30,7 @@ LABEL description="Kubectl and Helm."
 LABEL base="alpine"
 
 ENV KUBE_CONFIG=/home/helm/.kube/config
-
-RUN addgroup -g 666 helm && \
-    adduser -S -u 666 -G helm -h /home/helm helm && \
-    mkdir -p /home/helm/.kube && chown -R helm:helm /home/helm/.kube
-
-USER helm
+ENV HOME=/home/helm
 
 ADD release/linux/amd64/drone-helm /bin/
 COPY kubeconfig /home/helm/.kube/kubeconfig
