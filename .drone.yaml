@@ -1,6 +1,9 @@
 kind: pipeline
 name: drone-helm
 
+workspace:
+  base: /go/src/github.com/schrodit/drone-helm
+
 steps:
 
 - name: test
