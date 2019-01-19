@@ -1,10 +1,7 @@
 # Helm (Kubernetes) plugin for drone.io
-[![Build Status](https://ci.wesense.cloud/api/badges/schrodit/drone-helm/status.svg)](https://ci.wesense.cloud/schrodit/drone-helm
-
-[![Build Status](https://drone.pelo.tech/api/badges/josmo/drone-helm/status.svg)](https://drone.pelo.tech/josmo/drone-helm)
-[![Go Doc](https://godoc.org/github.com/josmo/drone-helm?status.svg)](http://godoc.org/github.com/josmo/drone-helm)
-[![Go Report](https://goreportcard.com/badge/github.com/josmo/drone-helm)](https://goreportcard.com/report/github.com/josmo/drone-helm)
-[![](https://images.microbadger.com/badges/image/peloton/drone-helm.svg)](https://microbadger.com/images/peloton/drone-helm "Get your own image badge on microbadger.com")
+[![Build Status](https://ci.wesense.cloud/api/badges/schrodit/drone-helm/status.svg)](https://ci.wesense.cloud/schrodit/drone-helm)
+[![Go Doc](https://godoc.org/github.com/schrodit/drone-helm?status.svg)](http://godoc.org/github.com/schrodit/drone-helm)
+[![Go Report](https://goreportcard.com/badge/github.com/schrodit/drone-helm)](https://goreportcard.com/report/github.com/schrodit/drone-helm)
 
 This plugin allows to deploy a [Helm](https://github.com/kubernetes/helm) chart into a [Kubernetes](https://github.com/kubernetes/kubernetes) cluster.
 
