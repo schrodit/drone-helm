@@ -5,7 +5,7 @@ For example, this configuration will deploy my-app using a chart located in the 
 ```YAML
 pipeline:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -22,7 +22,7 @@ Last update of Drone expect you to declare the secrets you want to use:
 ```YAML
 pipeline:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     chart: ./chart/blog
     release: ${DRONE_BRANCH}-blog
     values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
@@ -36,7 +36,7 @@ Use Kubernetes Certificate Authority Data. Just add the `<prefix>_kubernetes_cer
 
 ```diff
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     chart: ./chart/blog
     release: ${DRONE_BRANCH}-blog
     values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
@@ -61,7 +61,7 @@ For example:
 ```YAML
 pipeline:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -79,7 +79,7 @@ For Example:
 ```YAML
 pipeline:
   helm_deploy_staging:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     helm_repos: hb-charts=http://helm-charts.honestbee.com
     chart: hb-charts/hello-world
@@ -107,7 +107,7 @@ To restore these dependecies before the deployment `update_dependencies` paramet
 ```YAML
 pipeline:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     update_dependencies: true
@@ -122,13 +122,13 @@ pipeline:
 There are two secrets you have to create (Note that if you specify the prefix, your secrets have to be created using that prefix):
 
 ```bash
-drone secret add --image=quay.io/ipedrazas/drone-helm \
+drone secret add --image=wesense.azurecr.io/drone-helm:0.1.0 \
   your-user/your-repo STAGING_API_SERVER https://mykubernetesapiserver
 
-drone secret add --image=quay.io/ipedrazas/drone-helm \
+drone secret add --image=wesense.azurecr.io/drone-helm:0.1.0 \
   your-user/your-repo STAGING_KUBERNETES_TOKEN eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJ...
 
-drone secret add --image=quay.io/ipedrazas/drone-helm \
+drone secret add --image=wesense.azurecr.io/drone-helm:0.1.0 \
   your-user/your-repo STAGING_SECRET_PASSWORD Sup3rS3cr3t
 ```
 
@@ -137,7 +137,7 @@ drone secret add --image=quay.io/ipedrazas/drone-helm \
 ```YAML
 pipeline:
   helm_deploy_staging:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -151,7 +151,7 @@ pipeline:
 
 pipeline_production:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -196,7 +196,7 @@ To deploy to EKS, you should have `api_server` and `kubernetes_certificate` secr
 ```YAML
 pipeline
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
     values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
@@ -216,7 +216,7 @@ Running drone agent on an ec2 instance that has Role based access to assume the 
 ```YAML
 pipeline
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
     values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
@@ -234,7 +234,7 @@ Using IAM keys with access to assume the cluster access Role created above:
 ```YAML
 pipeline
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
     values: image.tag=${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:7}
@@ -257,7 +257,7 @@ The following example will install `tiller` in the `operations` namespace:
 ```YAML
 pipeline_production:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -273,7 +273,7 @@ There's an option to do a `dry-run` in case you want to verify that the secrets 
 ```YAML
 pipeline_production:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}
@@ -291,7 +291,7 @@ The following example will init `stable_repo_url` in the `https://kubernetes.oss
 ```YAML
 pipeline_production:
   helm_deploy:
-    image: quay.io/ipedrazas/drone-helm
+    image: wesense.azurecr.io/drone-helm:0.1.0
     skip_tls_verify: true
     chart: ./charts/my-chart
     release: ${DRONE_BRANCH}

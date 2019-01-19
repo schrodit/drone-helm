@@ -1,4 +1,5 @@
 # Helm (Kubernetes) plugin for drone.io
+[![Build Status](https://ci.wesense.cloud/api/badges/schrodit/drone-helm/status.svg)](https://ci.wesense.cloud/schrodit/drone-helm
 
 [![Build Status](https://drone.pelo.tech/api/badges/josmo/drone-helm/status.svg)](https://drone.pelo.tech/josmo/drone-helm)
 [![Go Doc](https://godoc.org/github.com/josmo/drone-helm?status.svg)](http://godoc.org/github.com/josmo/drone-helm)
@@ -15,7 +16,7 @@ This plugin allows to deploy a [Helm](https://github.com/kubernetes/helm) chart 
 For the usage information and a listing of the available options please take a look at [the docs](DOCS.md).
 
 
-Run the local image (or replace `drone-helm` with `quay.io/ipedrazas/drone-helm`:
+Run the local image (or replace `drone-helm` with `wesense.azurecr.io/drone-helm:0.1.0`:
 
 ```bash
 docker run --rm \
@@ -30,7 +31,7 @@ docker run --rm \
   -e PLUGIN_DEBUG=true \
   -e PLUGIN_DRY_RUN=true \
   -e DRONE_BUILD_EVENT=push \
-  quay.io/ipedrazas/drone-helm
+  wesense.azurecr.io/drone-helm:0.1.0
 ```
 
 ### Contribution
