@@ -25,7 +25,7 @@ steps:
     fi
 
 - name: docker
-  image: wesense.azurecr.io/acr-build:0.0.3
+  image: wesense.azurecr.io/acr-build:0.0.6
   settings:
     repo: wesense.azurecr.io/drone-helm
     context: .
