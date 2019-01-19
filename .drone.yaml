@@ -23,8 +23,10 @@ steps:
   - |
     if test "${DRONE_TAG}" = ""; then
       go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -o release/linux/amd64/${DRONE_REPO_NAME}
+      echo "${DRONE_BUILD_NUMBER}" > VERSION
     else
       go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -o release/linux/amd64/${DRONE_REPO_NAME}
+      echo "${DRONE_TAG##v}" > VERSION
     fi
 
 - name: docker
